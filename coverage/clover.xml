@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1612996367572" clover="3.2.0">
+  <project timestamp="1612996367572" name="All files">
+    <metrics statements="22" coveredstatements="22" conditionals="30" coveredconditionals="30" methods="1" coveredmethods="1" elements="53" coveredelements="53" complexity="0" loc="22" ncloc="22" packages="1" files="2" classes="2"/>
+    <file name="colors.js" path="/Users/stefangolker/Documents/Vis-Web-Developement/MasterMind/MasterMind-Business-Logic/src/colors.js">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <line num="1" count="1" type="stmt"/>
+    </file>
+    <file name="mastermind.js" path="/Users/stefangolker/Documents/Vis-Web-Developement/MasterMind/MasterMind-Business-Logic/src/mastermind.js">
+      <metrics statements="21" coveredstatements="21" conditionals="30" coveredconditionals="30" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="10" type="stmt"/>
+      <line num="5" count="10" type="cond" truecount="2" falsecount="0"/>
+      <line num="6" count="2" type="stmt"/>
+      <line num="8" count="8" type="cond" truecount="4" falsecount="0"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="11" count="7" type="cond" truecount="4" falsecount="0"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="14" count="6" type="cond" truecount="4" falsecount="0"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="17" count="5" type="cond" truecount="4" falsecount="0"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="20" count="4" type="cond" truecount="4" falsecount="0"/>
+      <line num="21" count="1" type="stmt"/>
+      <line num="23" count="3" type="cond" truecount="4" falsecount="0"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="26" count="2" type="cond" truecount="4" falsecount="0"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="29" count="1" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

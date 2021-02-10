@@ -1,0 +1,23 @@
+{
+  "name": "MasterMind-Business-Logic",
+  "version": "1.0.0",
+  "description": "a pickColor",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fr0zen3ye/MasterMind-Business-Logic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fr0zen3ye/MasterMind-Business-Logic/issues"
+  },
+  "homepage": "https://github.com/fr0zen3ye/MasterMind-Business-Logic#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
