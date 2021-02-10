@@ -1,6 +1,7 @@
 const colors = require('./colors');
 const { pickColor } = require('./mastermind')
 const { generateCode } = require('./mastermind')
+const { checkCode } = require('./mastermind')
 
 describe('pickColor', () => {
     it('should take a randomfn and return a color based on that', () => {
@@ -38,4 +39,49 @@ describe('generateCode', () => {
         };
         expect(generateCode(fakeRandom)).toEqual([colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE])
     });
+});
+
+describe('chekCode', () => {
+    it('should turn code and guess into hints when all colors diverge', () => {
+        expect(checkCode(
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.PURPLE, colors.ORANGE, colors.PINK, colors.BROWN]
+        )).toEqual(['NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL'])
+    })
+
+    it('should turn code and guess into hints when all colors are equal', () => {
+        expect(checkCode(
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE]
+        )).toEqual(['FITS', 'FITS', 'FITS', 'FITS'])
+    })
+
+    it('should turn code and guess into hints when all colors are partially right', () => {
+        expect(checkCode(
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.GREEN, colors.RED, colors.BLUE, colors.YELLOW]
+        )).toEqual(['PARTIALLY', 'PARTIALLY', 'PARTIALLY', 'PARTIALLY'])
+    })
+
+    it('should turn code and guess into hints when some colors are partially right others are right', () => {
+        expect(checkCode(
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.RED, colors.YELLOW, colors.BLUE, colors.GREEN]
+        )).toEqual(['FITS', 'PARTIALLY', 'PARTIALLY', 'PARTIALLY'])
+    })
+
+    it('should turn code and guess into hints when some colors are right others are wrong', () => {
+        expect(checkCode(
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.RED, colors.ORANGE, colors.PINK, colors.BROWN]
+        )).toEqual(['FITS', 'NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL'])
+    })
+
+    it('should turn code and guess into hints when some colors, partially right , diverged and right', () => {
+        expect(checkCode(
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.RED, colors.YELLOW, colors.ORANGE, colors.GREEN]
+        )).toEqual(['FITS', 'PARTIALLY', 'NOT_AT_ALL', 'PARTIALLY'])
+    })
+
 });
