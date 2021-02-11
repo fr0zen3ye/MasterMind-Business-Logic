@@ -42,7 +42,7 @@ describe('generateCode', () => {
     });
 });
 
-describe('chekCode', () => {
+describe('checkCode', () => {
     it('should turn code and guess into hints when all colors diverge', () => {
         expect(checkCode(
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
