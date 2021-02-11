@@ -1,4 +1,5 @@
 const colors = require('./colors');
+const hints = require('./hints');
 const { pickColor } = require('./mastermind')
 const { generateCode } = require('./mastermind')
 const { checkCode } = require('./mastermind')
@@ -47,7 +48,7 @@ describe('chekCode', () => {
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
             [colors.PURPLE, colors.ORANGE, colors.PINK, colors.BROWN],
             () => {  }
-        )).toContain(['NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL'])
+        )).toEqual([hints.NOT_AT_ALL, hints.NOT_AT_ALL, hints.NOT_AT_ALL, hints.NOT_AT_ALL])
     })
 
     it('should turn code and guess into hints when all colors are equal', () => {
@@ -55,7 +56,7 @@ describe('chekCode', () => {
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
             () => {  }
-        )).toContain(['FITS', 'FITS', 'FITS', 'FITS'])
+        )).toEqual([hints.FITS, hints.FITS, hints.FITS, hints.FITS])
     })
 
     it('should turn code and guess into hints when all colors are partially right', () => {
@@ -63,7 +64,7 @@ describe('chekCode', () => {
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
             [colors.GREEN, colors.RED, colors.BLUE, colors.YELLOW],
             () => {  }
-        )).toContain(['PARTIALLY', 'PARTIALLY', 'PARTIALLY', 'PARTIALLY'])
+        )).toEqual([hints.PARTIALLY, hints.PARTIALLY, hints.PARTIALLY, hints.PARTIALLY])
     })
 
     it('should turn code and guess into hints when some colors are partially right others are right', () => {
@@ -71,7 +72,7 @@ describe('chekCode', () => {
             [colors.BROWN, colors.GREEN, colors.YELLOW, colors.BLUE],
             [colors.BROWN, colors.YELLOW, colors.BLUE, colors.GREEN],
             () => {  }
-        )).toContain(['FITS', 'PARTIALLY', 'PARTIALLY', 'PARTIALLY'])
+        )).toEqual([hints.FITS, hints.PARTIALLY, hints.PARTIALLY, hints.PARTIALLY])
     })
 
     it('should turn code and guess into hints when some colors are right others are wrong', () => {
@@ -79,7 +80,7 @@ describe('chekCode', () => {
             [colors.PURPLE, colors.GREEN, colors.YELLOW, colors.BLUE],
             [colors.PURPLE, colors.ORANGE, colors.PINK, colors.BROWN],
             () => {  }
-        )).toContain(['FITS', 'NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL'])
+        )).toEqual([hints.FITS, hints.NOT_AT_ALL, hints.NOT_AT_ALL, hints.NOT_AT_ALL])
     })
 
     it('should turn code and guess into hints when some colors, partially right , diverged and right', () => {
@@ -87,14 +88,14 @@ describe('chekCode', () => {
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
             [colors.RED, colors.YELLOW, colors.ORANGE, colors.GREEN],
             () => {  }
-        )).toContain(['FITS', 'PARTIALLY', 'NOT_AT_ALL', 'PARTIALLY'])
+        )).toEqual([hints.FITS, hints.PARTIALLY, hints.NOT_AT_ALL, hints.PARTIALLY])
     })
     it('should countain solutions of result in different positions in random value(1)', () => {
         expect(checkCode(
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
             [colors.RED, colors.YELLOW, colors.ORANGE, colors.GREEN],
             (_) => { return 1 }
-        )).toContain('PARTIALLY', 'NOT_AT_ALL', 'PARTIALLY', 'FITS')
+        )).toContain(hints.PARTIALLY, hints.NOT_AT_ALL, hints.PARTIALLY, hints.FITS)
     })
 
     it('should countain solutions of result in different positions in random value(2)', () => {
@@ -102,7 +103,7 @@ describe('chekCode', () => {
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
             [colors.RED, colors.YELLOW, colors.ORANGE, colors.GREEN],
             (_) => { return 2 }
-        )).toContain('PARTIALLY', 'NOT_AT_ALL', 'PARTIALLY', 'FITS')
+        )).toContain(hints.PARTIALLY, hints.NOT_AT_ALL, hints.PARTIALLY, hints.FITS)
     })
 
     it('should countain solutions of result in different positions in random value(3)', () => {
@@ -110,6 +111,6 @@ describe('chekCode', () => {
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
             [colors.RED, colors.YELLOW, colors.ORANGE, colors.GREEN],
             (_) => { return 3 }
-        )).toContain('PARTIALLY', 'NOT_AT_ALL', 'PARTIALLY', 'FITS')
+        )).toContain(hints.PARTIALLY, hints.NOT_AT_ALL, hints.PARTIALLY, hints.FITS)
     })
 });

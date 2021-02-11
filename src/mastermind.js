@@ -75,6 +75,9 @@ const checkCode = (code, guess, randomFn) => {
     else if (randomVaule < 0){
         throw new Error ('Invalid Random'); 
     } 
+    else {
+        return result;
+    }
     console.log(changedResult)
     return changedResult;
 }
