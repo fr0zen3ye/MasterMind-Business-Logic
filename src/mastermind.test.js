@@ -45,43 +45,71 @@ describe('chekCode', () => {
     it('should turn code and guess into hints when all colors diverge', () => {
         expect(checkCode(
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
-            [colors.PURPLE, colors.ORANGE, colors.PINK, colors.BROWN]
-        )).toEqual(['NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL'])
+            [colors.PURPLE, colors.ORANGE, colors.PINK, colors.BROWN],
+            () => {  }
+        )).toContain(['NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL'])
     })
 
     it('should turn code and guess into hints when all colors are equal', () => {
         expect(checkCode(
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
-            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE]
-        )).toEqual(['FITS', 'FITS', 'FITS', 'FITS'])
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
+            () => {  }
+        )).toContain(['FITS', 'FITS', 'FITS', 'FITS'])
     })
 
     it('should turn code and guess into hints when all colors are partially right', () => {
         expect(checkCode(
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
-            [colors.GREEN, colors.RED, colors.BLUE, colors.YELLOW]
-        )).toEqual(['PARTIALLY', 'PARTIALLY', 'PARTIALLY', 'PARTIALLY'])
+            [colors.GREEN, colors.RED, colors.BLUE, colors.YELLOW],
+            () => {  }
+        )).toContain(['PARTIALLY', 'PARTIALLY', 'PARTIALLY', 'PARTIALLY'])
     })
 
     it('should turn code and guess into hints when some colors are partially right others are right', () => {
         expect(checkCode(
-            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
-            [colors.RED, colors.YELLOW, colors.BLUE, colors.GREEN]
-        )).toEqual(['FITS', 'PARTIALLY', 'PARTIALLY', 'PARTIALLY'])
+            [colors.BROWN, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.BROWN, colors.YELLOW, colors.BLUE, colors.GREEN],
+            () => {  }
+        )).toContain(['FITS', 'PARTIALLY', 'PARTIALLY', 'PARTIALLY'])
     })
 
     it('should turn code and guess into hints when some colors are right others are wrong', () => {
         expect(checkCode(
-            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
-            [colors.RED, colors.ORANGE, colors.PINK, colors.BROWN]
-        )).toEqual(['FITS', 'NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL'])
+            [colors.PURPLE, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.PURPLE, colors.ORANGE, colors.PINK, colors.BROWN],
+            () => {  }
+        )).toContain(['FITS', 'NOT_AT_ALL', 'NOT_AT_ALL', 'NOT_AT_ALL'])
     })
 
     it('should turn code and guess into hints when some colors, partially right , diverged and right', () => {
         expect(checkCode(
             [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
-            [colors.RED, colors.YELLOW, colors.ORANGE, colors.GREEN]
-        )).toEqual(['FITS', 'PARTIALLY', 'NOT_AT_ALL', 'PARTIALLY'])
+            [colors.RED, colors.YELLOW, colors.ORANGE, colors.GREEN],
+            () => {  }
+        )).toContain(['FITS', 'PARTIALLY', 'NOT_AT_ALL', 'PARTIALLY'])
+    })
+    it('should countain solutions of result in different positions in random value(1)', () => {
+        expect(checkCode(
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.RED, colors.YELLOW, colors.ORANGE, colors.GREEN],
+            (_) => { return 1 }
+        )).toContain('PARTIALLY', 'NOT_AT_ALL', 'PARTIALLY', 'FITS')
     })
 
+    it('should countain solutions of result in different positions in random value(2)', () => {
+        expect(checkCode(
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.RED, colors.YELLOW, colors.ORANGE, colors.GREEN],
+            (_) => { return 2 }
+        )).toContain('PARTIALLY', 'NOT_AT_ALL', 'PARTIALLY', 'FITS')
+    })
+
+    it('should countain solutions of result in different positions in random value(3)', () => {
+        expect(checkCode(
+            [colors.RED, colors.GREEN, colors.YELLOW, colors.BLUE],
+            [colors.RED, colors.YELLOW, colors.ORANGE, colors.GREEN],
+            (_) => { return 3 }
+        )).toContain('PARTIALLY', 'NOT_AT_ALL', 'PARTIALLY', 'FITS')
+    })
 });

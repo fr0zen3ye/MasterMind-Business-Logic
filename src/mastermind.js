@@ -36,8 +36,9 @@ const generateCode = (randomFn) => {
     })
 }
 
-const checkCode = (code, guess) => {
+const checkCode = (code, guess, randomFn) => {
     const result = []
+    let randomVaule = randomFn();
     guess.forEach((color, index) => {
         if (color === code[index]) {
             result.push(hints.FITS)
@@ -49,8 +50,33 @@ const checkCode = (code, guess) => {
             result.push(hints.NOT_AT_ALL)
         }
     })
-    console.log(result)
-    return result
+
+    let changedResult = result.slice();
+
+    console.log(randomVaule);
+    if (randomVaule >= 0 ){
+        changedResult[0] = result [1]
+        changedResult[1] = result [2]
+        changedResult[2] = result [3]
+        changedResult[3] = result [0]
+    }
+    else if(randomVaule >= 1) {
+        changedResult[0] = result [2]
+        changedResult[1] = result [3]
+        changedResult[2] = result [1]
+        changedResult[3] = result [0]
+    }
+    else if(randomVaule >= 2) {
+        changedResult[0] = result [3]
+        changedResult[1] = result [0]
+        changedResult[2] = result [2]
+        changedResult[3] = result [1]
+    }
+    else if (randomVaule < 0){
+        throw new Error ('Invalid Random'); 
+    } 
+    console.log(changedResult)
+    return changedResult;
 }
 
 module.exports = {
